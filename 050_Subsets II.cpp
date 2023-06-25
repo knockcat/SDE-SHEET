@@ -24,7 +24,7 @@ vector<vector<int>> uniqueSubsets(int n, vector<int> &arr)
 
     sort(arr.begin(), arr.end());
 
-    vector<vector<int>> ans;
+    set<vector<int>> used;
 
     vector<int> ds;
 
