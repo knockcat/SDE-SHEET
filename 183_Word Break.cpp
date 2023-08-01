@@ -75,3 +75,38 @@ bool wordBreak(vector < string > & arr, int n, string & target) {
     // cout<<dp[m-1]<<endl;
     return dp[m-1] > 0;
 }
+
+// Time Complexity -> O(n*n)
+// Space Complexity -> O(n)
+
+#include <bits/stdc++.h> 
+bool wordBreak(vector < string > & arr, int n, string & target) {
+    // Write your code here.
+
+    int m = target.size();
+
+    unordered_set<string> st;
+    
+    vector<int> dp(m, 0);
+    
+    for(auto& itr : arr)
+        st.insert(itr);
+
+    for(int i = 0; i < m; ++i)
+    {
+        string temp;
+        for(int j = i; j < m; ++j)
+        {
+            temp += target[j];
+            if(st.find(temp) != st.end())
+            {
+                if(i > 0)
+                    dp[j] += dp[i-1];
+                else
+                    dp[j] += 1;
+            }
+        }
+    }
+
+    return dp[m-1] > 0;
+}
